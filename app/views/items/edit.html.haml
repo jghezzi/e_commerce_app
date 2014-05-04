@@ -1,0 +1,13 @@
+= form_for @item do |i|
+	- if @current_user.id == @item.user_id
+		= i.label "Item"
+		= i.text_field :name
+		%br
+		= i.label "Price"
+		= i.text_field :price
+		%br
+		= i.label "Status"
+		= i.text_field :status
+		%br
+		= i.submit "Edit" 
+	

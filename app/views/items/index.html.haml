@@ -1,0 +1,17 @@
+- @items.each do |i|
+	-if @current_user.id == i.user_id
+		%br
+		%br
+		Item Name:
+		= i.name
+		%br
+		Price:
+		= i.price
+		%br
+		Status:
+		= i.status
+		%br
+		= link_to "Edit", edit_item_path(i), method: :get
+		= link_to "Remove", item_path(i), method: :delete
+		%br
+		%br
