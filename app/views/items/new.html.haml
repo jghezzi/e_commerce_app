@@ -7,4 +7,9 @@
 	%br
 	= i.hidden_field :status, value: "FOR SALE"
 	= i.hidden_field :user_id, value: @current_user.id
+	
+	= i.fields_for :offer do |o|
+		= o.hidden_field :item_id, value: @new_item.id
+		= o.hidden_field :seller_id, value: @current_user.id
+
 	= i.submit "Add Item"

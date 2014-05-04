@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
 
 	def new
 		@new_item = Item.new
+		@new_item.build_offer
 	end
 
 	def create
@@ -39,6 +40,7 @@ class ItemsController < ApplicationController
 	private
 
 	def item_params
-		params.require(:item).permit!
+		params.require(:item).permit(:name, :price, :status, :user_id, offer_attributes: [:item_id, :seller_id])
 	end
+
 end
