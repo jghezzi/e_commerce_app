@@ -8,7 +8,13 @@ Rails.application.routes.draw do
   resources :users
   resources :sellers
   resources :buyers
-  resources :items
+  resources :items do
+    member do
+      get :buy
+      patch :pay
+    end
+  end
+
   resources :sessions, only: [:new, :create, :destroy]
 
   # You can have the root of your site routed with "root"

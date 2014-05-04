@@ -37,6 +37,19 @@ class ItemsController < ApplicationController
 		redirect_to items_path
 	end
 
+	def buy
+		@item = Item.find(params[:id])
+	end
+
+	def pay_item
+		@item = Item.find(params[:id])
+		if @item.update_attributes(item_params)
+			redirect_to items_path
+		else
+			render buy_item_path
+		end
+	end
+
 	private
 
 	def item_params

@@ -1,0 +1,11 @@
+= form_for @item do |i|
+	- if @current_user.id == @item.user_id || @current_user.type == "Buyer"
+		= i.label "Item:"
+		= @item.name
+		%br
+		= i.label "Price"
+		= @item.price
+		%br
+		= i.hidden_field :status, value: "SOLD"
+		%br
+		= i.submit "Buy"
