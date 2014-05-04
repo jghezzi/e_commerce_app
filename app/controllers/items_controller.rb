@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-
 	def index
 		@items = Item.all
 	end
@@ -41,19 +40,25 @@ class ItemsController < ApplicationController
 		@item = Item.find(params[:id])
 	end
 
-	def pay_item
+	def add_to_cart
 		@item = Item.find(params[:id])
-		if @item.update_attributes(item_params)
+		@item.update_attributes(:status => "IN CART", :buyer_id => @current_user.id)
+		redirect_to items_path
+	end
+
+	def checkout
+		@items = Item.all
+	end
+
+	def pay
+		@items = Item.update_all("status = 'SOLD' WHERE buyer_id = #{current_user.id} AND status = 'IN CART'")
 			redirect_to items_path
-		else
-			render buy_item_path
-		end
 	end
 
 	private
 
 	def item_params
-		params.require(:item).permit(:name, :price, :status, :user_id, offer_attributes: [:item_id, :seller_id])
+		params.require(:item).permit(:name, :price, :status, :user_id, offer_attributes: [:item_id, :seller_id, :buyer_id])
 	end
 
 end

@@ -1,0 +1,16 @@
+- @items.each do |i|
+	- if @current_user.id == i.buyer_id
+		%br
+		%br
+		Item Name:
+		= i.name
+		%br
+		Price:
+		= i.price
+		%br
+		Status:
+		= i.status
+		%br
+
+= link_to "Buy Items", pay_items_path, method: :patch		
+		

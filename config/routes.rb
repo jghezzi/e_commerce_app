@@ -9,9 +9,13 @@ Rails.application.routes.draw do
   resources :sellers
   resources :buyers
   resources :items do
-    member do
-      get :buy
+    collection do
+      get :checkout
       patch :pay
+    end
+    member do
+      patch :add_to_cart
+      get :buy
     end
   end
 

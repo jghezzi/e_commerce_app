@@ -29,6 +29,7 @@
 		Status:
 		= i.status
 		%br
-		= link_to "Buy", buy_item_path(i), method: :get
+		- if i.status == "FOR SALE"
+			= link_to "Add to cart", add_to_cart_item_path(i), method: :patch
 		%br
 		%br

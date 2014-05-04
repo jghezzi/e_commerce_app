@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 	def create
 		@new_user = User.new(user_params)
 		if @new_user.save 
-			redirect_to new_user_path, notice: "Signup successful!"
+			redirect_to items_path, notice: "Signup successful!"
 		else
 			render :new, notice: "Signup failed!"
 		end
