@@ -1,9 +1,8 @@
-Log In
+%h4 Log In to E-commerce
 
 = form_tag url: sessions_path do
 	= label_tag "E-mail"
 	= text_field_tag :email, params[:email]
 	= label_tag "Password"
 	= password_field_tag :password
-	%br
 	= submit_tag "Log In"

@@ -1,13 +1,10 @@
-Seller Sign Up!
+%h4 Seller Sign Up!
 
 = form_for @new_seller, url: sellers_path, method: :post do |u|
 	E-mail address:
 	= u.email_field :email
-	%br
 	Password:
 	= u.password_field :password
-	%br
 	Password Confirmation:
 	= u.password_field :password_confirmation
-	%br 
 	= u.submit "Sign Up!" 

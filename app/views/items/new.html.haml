@@ -1,10 +1,8 @@
 = form_for @new_item do |i|
 	= i.label "Item"
 	= i.text_field :name
-	%br
 	= i.label "Price"
 	= i.number_field :price
-	%br
 	= i.hidden_field :status, value: "FOR SALE"
 	= i.hidden_field :user_id, value: @current_user.id
 	

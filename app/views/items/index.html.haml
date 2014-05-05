@@ -1,35 +1,37 @@
-- @items.each do |i|  
-	- if @current_user.id == i.user_id
-		%br
-		%br
-		Item Name:
-		= i.name
-		%br
-		Price:
-		= i.price
-		%br
-		Status:
-		= i.status
-		%br
-		= link_to "Edit", edit_item_path(i), method: :get
-		= link_to "Remove", item_path(i), method: :delete
-		%br
-		%br
 
-- @items.each do |i|
-	- if @current_user.type == "Buyer"
-		%br
-		%br
-		Item Name:
-		= i.name
-		%br
-		Price:
-		= i.price
-		%br
-		Status:
-		= i.status
-		%br
-		- if i.status == "FOR SALE"
-			= link_to "Add to cart", add_to_cart_item_path(i), method: :patch
-		%br
-		%br
+- if @current_user.type == "Seller"
+	%h2 My Items
+	- @items.each do |i|  
+		- if @current_user.id == i.user_id
+			%br
+			%br
+			%b #{i.name}
+			%br
+			Price:
+			= i.price
+			%br
+			Status:
+			= i.status
+			%br
+			- if i.status == "FOR SALE"
+				= button_to "Edit", edit_item_path(i), method: :get
+				= button_to "Remove", item_path(i), method: :delete
+			%br
+
+- if @current_user.type == "Buyer"
+	%h2 Items for Sale
+	- @items.each do |i|
+		-if i.status == "FOR SALE"
+			%br
+			%br
+			%b #{i.name}
+			%br
+			Price:
+			= i.price
+			%br
+			Status:
+			= i.status
+			%br
+			- if i.status == "FOR SALE"
+				= button_to "Add to cart", add_to_cart_item_path(i), method: :patch
+			%br

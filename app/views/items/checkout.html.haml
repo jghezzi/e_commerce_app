@@ -1,5 +1,8 @@
+%h4 My Cart
+%br
+= button_to "Checkout", pay_items_path, method: :patch		
 - @items.each do |i|
-	- if @current_user.id == i.buyer_id
+	- if @current_user.id == i.buyer_id && i.status == "IN CART"
 		%br
 		%br
 		Item Name:
@@ -11,6 +14,4 @@
 		Status:
 		= i.status
 		%br
-
-= link_to "Buy Items", pay_items_path, method: :patch		
-		
+			
